@@ -1,0 +1,77 @@
+.repo-data-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 40px 0;
+}
+
+.repo-data-container {
+  display: flex;
+  flex-direction: column;
+  width: 900px;
+}
+
+.repo-data {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 4px;
+  border: 1px solid #888888;
+  box-shadow: 2px 3px 5px #E0E0E0;
+}
+
+.repo-data:not(:first-child) {
+  margin-top: 20px;
+}
+
+.repo-data-first-row, .repo-data-third-row {  
+  display: flex;
+  justify-content: space-between;
+}
+
+.repo-data-third-row {  
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.repo-title {
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.repo-content {
+  font-size: 16px;
+}
+
+.repo-content > i {
+  margin-right: 5px;
+}
+
+.repo-content:last-child {
+  margin-left: 15px;
+}
+
+.repo-update-time {
+  color: #888888;
+}
+
+.repo-description {
+  font-size: 16px;
+  color: #888888;
+}
+
+.repo-owner {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.repo-owner-avatar {
+  width: 50px;
+  border-radius: 50%;
+}
+
+.repo-owner-name {
+  font-size: 18px;
+  margin-left: 12px;
+}
