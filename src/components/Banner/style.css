@@ -31,4 +31,13 @@
   padding: 14px 24px;
 }
 
+.count-down-timer-container {
+  display: flex;
+  justify-content: flex-end;
+  min-height: 20px;
+  margin-top: 5px;
+  color: #FFFFFF;
+  text-shadow: 1px 1px 3px #333333;
+}
+
 @media screen and (max-width:768px) {}

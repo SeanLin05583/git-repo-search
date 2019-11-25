@@ -11,7 +11,13 @@ const RepoData = (props) => {
     <div className={cx('repo-data-wrapper')}>
       <div className={cx('repo-data-container')}>
         {props.data.map(data =>
-          <a key={data.id} href={data.html_url} target="_blank" className={cx('repo-data')}>
+          <a
+            key={data.id}
+            rel="noopener noreferrer"
+            href={data.html_url}
+            target="_blank"
+            className={cx('repo-data')}
+          >
             <div className={cx('repo-data-first-row')}>
               <p className={cx('repo-title')}>{data.full_name}</p>
               <div>
