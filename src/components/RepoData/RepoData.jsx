@@ -11,7 +11,7 @@ const RepoData = (props) => {
     <div className={cx('repo-data-wrapper')}>
       <div className={cx('repo-data-container')}>
         {props.data.map(data =>
-          <div key={data.id} className={cx('repo-data')}>
+          <a key={data.id} href={data.html_url} target="_blank" className={cx('repo-data')}>
             <div className={cx('repo-data-first-row')}>
               <p className={cx('repo-title')}>{data.full_name}</p>
               <div>
@@ -31,7 +31,7 @@ const RepoData = (props) => {
               </div>
               <span className={cx('repo-update-time')}>last update: {moment(data.updated_at).format('YYYY-MM-DD')}</span>
             </div>
-          </div>
+          </a>
         )}
       </div>
     </div>
