@@ -1,5 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+online demo : https://seanlin05583.github.io/seanlin-profile/#/git-repo-search
+
 ## 執行方式
 1. clone repo
     ```
