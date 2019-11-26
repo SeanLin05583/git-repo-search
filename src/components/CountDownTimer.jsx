@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-const CountDownTimer = ({ seconds }) => {
+const SEARCH_API_RATE_LIMIT_SECOND = 6;
+
+const CountDownTimer = ({ seconds = SEARCH_API_RATE_LIMIT_SECOND }) => {
   const [countDownTime, setCountDownTime] = useState(seconds);
 
   useEffect(() => {

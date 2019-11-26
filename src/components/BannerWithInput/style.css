@@ -22,13 +22,28 @@
   text-shadow: 2px 2px 4px #333333;
 }
 
-.repo-search-input {
+.repo-search-input-container {
+  position: relative;
   margin-top: 14px;
+}
+
+.repo-search-input {
   width: 100%;
   border: none;
   border-radius: 3px;
   font-size: 20px;
-  padding: 14px 24px;
+  padding: 14px 49px 14px 24px;
+}
+
+.repo-search-input-spinner-container {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 50px;
 }
 
 .count-down-timer-container {

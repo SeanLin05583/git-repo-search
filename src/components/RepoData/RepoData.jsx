@@ -1,17 +1,21 @@
 import React from 'react';
+import CountDownTimer from '../CountDownTimer';
+import CircleSpinner from '../CircleSpinner';
 import classNames from 'classnames/bind';
 import style from './style.css';
 import moment from 'moment';
 
 const cx = classNames.bind(style);
 
-const RepoData = ({ repoData }) => {
+const RepoData = ({ repoData, isSearchInputDisabled, isFetchingData, totalCount }) => {
   const isSetRepoData = repoData !== null;
-  const hasRepoData = repoData && repoData.length > 0;
+  const hasRepoData = repoData && totalCount > 0;
+  const isNoMoreData = repoData && (repoData.length === totalCount) && totalCount > 0;
+  
   return (
     <div className={cx('repo-data-wrapper')}>
       <div className={cx('repo-data-container')}>
-        {(isSetRepoData && !hasRepoData) && <p className={cx('repo-data-hint-text')}>no repos found</p>}
+        {(isSetRepoData && !hasRepoData) && <p className={cx('repo-data-hint-text')}>No repos found</p>}
         {(isSetRepoData && hasRepoData) && repoData.map(data =>
           <a
             key={data.id}
@@ -41,6 +45,17 @@ const RepoData = ({ repoData }) => {
             </div>
           </a>
         )}
+        {isNoMoreData && <p className={cx('repo-data-hint-text')}>No more data</p>}
+        {(isSearchInputDisabled && hasRepoData && !isNoMoreData) &&
+          <p className={cx('repo-data-hint-text')}>
+            <CountDownTimer />
+          </p>
+        }
+        {isFetchingData &&
+          <p className={cx('repo-data-hint-text')}>
+            <CircleSpinner />
+          </p>
+        }
       </div>
     </div>
   )

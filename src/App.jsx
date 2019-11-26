@@ -9,30 +9,42 @@ const SEARCH_RESULT_PER_PAGE = 10; // 一次搜尋顯示幾筆資料
 
 function App() {
   const [repoData, setRepoData] = useState(null);
+  const [totalCount, setTotalCount] = useState(0);
   const [pageIndex, setPageIndex] = useState(1);
+  const [isFetchingData, setIsFetchingData] = useState(false);
   const [searchInputValue, setSearchInputValue] = useState('');
   const [isSearchInputDisabled, setIsSearchInputDisabled] = useState(false);
   const appContainerRef = useRef(null);
 
   const handleSearchPost = useCallback(async (searchValue, page = 1) => {
-    if (isSearchInputDisabled) return;
-    const searchResult =
-      await axios.get(`https://api.github.com/search/repositories?q=topic:${searchValue}&page=${page}&per_page=${SEARCH_RESULT_PER_PAGE}`);
-    if (page === 1) {
-      setRepoData(searchResult.data.items);
-    } else {
-      setRepoData([...repoData, ...searchResult.data.items]);
-      setPageIndex(page);
+    if (isSearchInputDisabled || isFetchingData) return;
+
+    setIsFetchingData(true);
+    try {
+      const searchResult =
+        await axios.get(`https://api.github.com/search/repositories?q=topic:${searchValue}&page=${page}&per_page=${SEARCH_RESULT_PER_PAGE}`);
+
+      if (page === 1) {
+        setRepoData(searchResult.data.items);
+      } else {
+        setRepoData([...repoData, ...searchResult.data.items]);
+        setPageIndex(page);
+      }
+
+      setTotalCount(searchResult.data['total_count']);
+      setIsSearchInputDisabled(true);
+      setTimeout(() => {
+        setIsSearchInputDisabled(false);
+      }, SEARCH_API_RATE_LIMIT_SECOND * 1000);
+    } finally {
+      setIsFetchingData(false);
     }
-    setIsSearchInputDisabled(true);
-    setTimeout(() => {
-      setIsSearchInputDisabled(false);
-    }, SEARCH_API_RATE_LIMIT_SECOND * 1000);
-  }, [isSearchInputDisabled, repoData]);
+  }, [isSearchInputDisabled, isFetchingData, repoData]);
 
   useEffect(() => {
     const handleScroll = () => {
       if (window.pageYOffset + window.innerHeight >= appContainerRef.current.scrollHeight) {
+        if (repoData && repoData.length === totalCount) return;
         handleSearchPost(searchInputValue, pageIndex + 1);
       }
     }
@@ -41,7 +53,7 @@ function App() {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     }
-  }, [pageIndex, searchInputValue, handleSearchPost]);
+  }, [pageIndex, searchInputValue, handleSearchPost, repoData, totalCount]);
 
   return (
     <div ref={appContainerRef}>
@@ -50,8 +62,14 @@ function App() {
         onSearchPost={handleSearchPost}
         inputValue={searchInputValue}
         setInputValue={setSearchInputValue}
+        isFetchingData={isFetchingData}
       />
-      <RepoData repoData={repoData} />
+      <RepoData
+        isSearchInputDisabled={isSearchInputDisabled}
+        repoData={repoData}
+        totalCount={totalCount}
+        isFetchingData={isFetchingData}
+      />
     </div>
   );
 }
