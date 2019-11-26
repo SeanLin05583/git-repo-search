@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import CountDownTimer from './CountDownTimer';
+import React, { useState, useEffect } from 'react';
+import CountDownTimer from '../CountDownTimer';
 import classNames from 'classnames/bind';
 import style from './style.css';
 
@@ -8,10 +8,13 @@ const SEARCH_INPUT_POST_DEBOUNCE_TIME = 1500;
 const SEARCH_API_RATE_LIMIT_SECOND = 6;
 let searchInputPostDebounceTimer = null;
 
-const BannerWithInput = (props) => {
-  const [inputValue, setInputValue] = useState('');
+const BannerWithInput = ({
+  isSearchInputDisabled,
+  onSearchPost,
+  inputValue,
+  setInputValue,
+}) => {
   const [isSearchInputFocused, setIsSearchInputFocused] = useState(false);
-  const { isSearchInputDisabled, onSearchPost } = props;
 
   useEffect(() => {
     const handleInputKeyDown = e => {

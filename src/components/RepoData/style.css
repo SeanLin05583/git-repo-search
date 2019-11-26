@@ -47,15 +47,19 @@
   font-weight: 600;
 }
 
-.repo-content {
+.repo-info-container {
+  white-space: nowrap;
+}
+
+.repo-info {
   font-size: 16px;
 }
 
-.repo-content > i {
+.repo-info > i {
   margin-right: 5px;
 }
 
-.repo-content:last-child {
+.repo-info:last-child {
   margin-left: 15px;
 }
 
@@ -64,6 +68,7 @@
 }
 
 .repo-description {
+  margin-top: 5px;
   font-size: 16px;
   color: #888888;
 }
@@ -82,4 +87,10 @@
 .repo-owner-name {
   font-size: 18px;
   margin-left: 12px;
+}
+
+.repo-data-hint-text {
+  text-align: center;
+  color: #282828;
+  font-size: 18px;
 }
