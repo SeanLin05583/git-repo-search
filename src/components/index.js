@@ -1,2 +1,2 @@
-export { Banner } from './Banner';
+export { BannerWithInput } from './BannerWithInput';
 export { RepoData } from './RepoData';

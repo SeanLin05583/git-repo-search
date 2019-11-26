@@ -1,14 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import './normalize.css';
 import './style.css';
-import { Banner, RepoData } from 'components';
+import { BannerWithInput, RepoData } from 'components';
+
+const SEARCH_API_RATE_LIMIT_SECOND = 6;
 
 function App() {
   const [repoData, setRepoData] = useState(fakeData);
+  const [pageIndex, setPageIndex] = useState(1);
+  const [isSearchInputDisabled, setIsSearchInputDisabled] = useState(false);
+
+  const handleSearchPost = useCallback((searchValue) => {
+    if (isSearchInputDisabled) return;
+    // TODO: call search API here
+    console.log(searchValue, pageIndex);
+    setIsSearchInputDisabled(true);
+    setTimeout(() => {
+      setIsSearchInputDisabled(false);
+    }, SEARCH_API_RATE_LIMIT_SECOND * 1000);
+  }, [isSearchInputDisabled]);
 
   return (
     <div>
-      <Banner setData={setRepoData} />
+      <BannerWithInput
+        setData={setRepoData}
+        isSearchInputDisabled={isSearchInputDisabled}
+        onSearchPost={handleSearchPost}
+      />
       <RepoData data={repoData} />
     </div>
   );

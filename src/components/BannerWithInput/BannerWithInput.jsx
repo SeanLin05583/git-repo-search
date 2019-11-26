@@ -8,26 +8,16 @@ const SEARCH_INPUT_POST_DEBOUNCE_TIME = 1500;
 const SEARCH_API_RATE_LIMIT_SECOND = 6;
 let searchInputPostDebounceTimer = null;
 
-const Banner = () => {
+const BannerWithInput = (props) => {
   const [inputValue, setInputValue] = useState('');
-  const [isSearchInputDisabled, setIsSearchInputDisabled] = useState(false);
   const [isSearchInputFocused, setIsSearchInputFocused] = useState(false);
-
-  const handleSearchPost = useCallback((searchValue) => {
-    if (isSearchInputDisabled) return;
-    // TODO: call search API here
-    console.log(searchValue);
-    setIsSearchInputDisabled(true);
-    setTimeout(() => {
-      setIsSearchInputDisabled(false);
-    }, SEARCH_API_RATE_LIMIT_SECOND * 1000);
-  }, [isSearchInputDisabled]);
+  const { isSearchInputDisabled, onSearchPost } = props;
 
   useEffect(() => {
     const handleInputKeyDown = e => {
       if (e.keyCode === 13 && isSearchInputFocused) {
         clearTimeout(searchInputPostDebounceTimer);
-        handleSearchPost(inputValue);
+        onSearchPost(inputValue);
       }
     }
 
@@ -35,7 +25,7 @@ const Banner = () => {
     return () => {
       window.removeEventListener('keydown', handleInputKeyDown);
     };
-  }, [inputValue, isSearchInputFocused, handleSearchPost]);
+  }, [inputValue, isSearchInputFocused, onSearchPost]);
 
   const handleSearchInputValueChange = (e) => {
     const newSearchInputValue = e.target.value;
@@ -44,7 +34,7 @@ const Banner = () => {
     if (!isSearchInputDisabled && newSearchInputValue) {
       clearTimeout(searchInputPostDebounceTimer);
       searchInputPostDebounceTimer = setTimeout(() => {
-        handleSearchPost(newSearchInputValue);
+        onSearchPost(newSearchInputValue);
       }, SEARCH_INPUT_POST_DEBOUNCE_TIME);
     }
   }
@@ -69,4 +59,4 @@ const Banner = () => {
   )
 }
 
-export default Banner;
+export default BannerWithInput;
