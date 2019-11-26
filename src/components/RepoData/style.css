@@ -8,6 +8,7 @@
   display: flex;
   flex-direction: column;
   width: 900px;
+  max-width: 100%;
 }
 
 .repo-data {
@@ -31,12 +32,13 @@
   margin-top: 20px;
 }
 
-.repo-data-first-row, .repo-data-third-row {  
+.repo-data-first-row,
+.repo-data-third-row {
   display: flex;
   justify-content: space-between;
 }
 
-.repo-data-third-row {  
+.repo-data-third-row {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -45,6 +47,7 @@
 .repo-title {
   font-size: 30px;
   font-weight: 600;
+  word-break: break-word;
 }
 
 .repo-info-container {
@@ -55,7 +58,7 @@
   font-size: 16px;
 }
 
-.repo-info > i {
+.repo-info>i {
   margin-right: 5px;
 }
 
@@ -94,4 +97,47 @@
   color: #282828;
   font-size: 18px;
   margin-top: 15px;
+}
+
+@media screen and (max-width:768px) {
+  .repo-data-wrapper {
+    padding: 30px 3%;
+  }
+
+  .repo-data {
+    padding: 15px;
+  }
+
+  .repo-data:hover {
+    transform: scale(1);
+  }
+
+  .repo-title {
+    font-size: 24px;
+  }
+
+  .repo-info-container {
+    display: none;
+  }
+
+  .repo-description {
+    font-size: 14px;
+  }
+
+  .repo-owner-avatar {
+    width: 35px;
+  }
+
+  .repo-owner-name {
+    font-size: 16px;
+    margin-left: 10px;
+  }
+
+  .repo-update-time {
+    display: none;
+  }
+
+  .repo-data-hint-text {
+    font-size: 16px;
+  }
 }
