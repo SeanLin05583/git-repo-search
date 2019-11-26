@@ -1,6 +1,23 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-
+## 執行方式
+1. clone repo
+    ```
+    git clone https://github.com/SeanLin05583/git-repo-search.git sean-git-repo-search
+    ```
+2. cd sean-git-repo-search
+    ```
+    cd sean-git-repo-search
+    ```
+3. install package
+    ```
+    npm install
+    ```
+4. start project
+    ```
+    npm start
+    ```
+    
 ## 問題描述
 1. 偵測文字輸入框的變動,並查詢相關的 GitHub repos(參考 GitHub API)
 2. 請留意搜尋 API 有 rate limit,所以必須避免過於頻繁的 API requests
@@ -24,6 +41,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
         - stars
         - forks
         - 點擊前往 github 頁面
+- RWD breakpoint：768px 
         
 
 ### API
