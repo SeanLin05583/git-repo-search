@@ -32,6 +32,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 - Banner + 一個 input
     - Banner 來源 https://unsplash.com/
+    - Input focus 時按下 Enter 送出
+    - Input 輸入後閒置 1.5 秒後送出
 - 下方 result + Spinner
     - result 顯示
         - Title
