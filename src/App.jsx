@@ -19,6 +19,11 @@ function App() {
   const handleSearchPost = useCallback(async (searchValue, page = 1) => {
     if (isSearchInputDisabled || isFetchingData) return;
 
+    if (page === 1) {
+      setRepoData(null);
+      setTotalCount(0);
+    }
+
     setIsFetchingData(true);
     try {
       const searchResult =
