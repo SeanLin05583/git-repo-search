@@ -3,19 +3,19 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## 執行方式
 1. clone repo
     ```
-    git clone https://github.com/SeanLin05583/git-repo-search.git sean-git-repo-search
+    $ git clone https://github.com/SeanLin05583/git-repo-search.git sean-git-repo-search
     ```
 2. cd sean-git-repo-search
     ```
-    cd sean-git-repo-search
+    $ cd sean-git-repo-search
     ```
 3. install package
     ```
-    npm install
+    $ npm install
     ```
 4. start project
     ```
-    npm start
+    $ npm start
     ```
     
 ## 問題描述
