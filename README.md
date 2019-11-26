@@ -52,6 +52,7 @@ online demo : https://seanlin05583.github.io/seanlin-profile/#/git-repo-search
 
 1. call https://api.github.com/search/repositories?q=topic:ruby+topic:rails 確認 API 回傳資料
 2. call https://api.github.com/search/repositories?q=topic:ruby+topic:rails&page=1&per_page=1 確認分頁可以正確執行
+3. 一次 request 撈取 10 筆
 
 ### 架構
 因只有一頁式，不使用 redux
@@ -72,3 +73,11 @@ online demo : https://seanlin05583.github.io/seanlin-profile/#/git-repo-search
  - classnames：module css
  - moment：format time string
  - axios：handle http request
+ 
+ ## 測試 input data
+ 1. testtesttest
+    1 筆資料
+ 2. react testing enzy
+    27 筆資料
+ 3. asdasdasdasd
+    0 筆資料
