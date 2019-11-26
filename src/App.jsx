@@ -16,7 +16,7 @@ function App() {
   const [isSearchInputDisabled, setIsSearchInputDisabled] = useState(false);
   const appContainerRef = useRef(null);
 
-  const handleSearchPost = useCallback(async (searchValue, page = 1) => {
+  const handleRepoSearch = useCallback(async (searchValue, page = 1) => {
     if (isSearchInputDisabled || isFetchingData) return;
 
     if (page === 1) {
@@ -50,7 +50,7 @@ function App() {
     const handleScroll = () => {
       if (window.pageYOffset + window.innerHeight >= appContainerRef.current.scrollHeight) {
         if (repoData && repoData.length === totalCount) return;
-        handleSearchPost(searchInputValue, pageIndex + 1);
+        handleRepoSearch(searchInputValue, pageIndex + 1);
       }
     }
 
@@ -58,13 +58,13 @@ function App() {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     }
-  }, [pageIndex, searchInputValue, handleSearchPost, repoData, totalCount]);
+  }, [pageIndex, searchInputValue, handleRepoSearch, repoData, totalCount]);
 
   return (
     <div ref={appContainerRef}>
       <BannerWithInput
         isSearchInputDisabled={isSearchInputDisabled}
-        onSearchPost={handleSearchPost}
+        onRepoSearch={handleRepoSearch}
         inputValue={searchInputValue}
         setInputValue={setSearchInputValue}
         isFetchingData={isFetchingData}

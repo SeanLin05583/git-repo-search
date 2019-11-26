@@ -10,7 +10,7 @@ let searchInputPostDebounceTimer = null;
 
 const BannerWithInput = ({
   isSearchInputDisabled,
-  onSearchPost,
+  onRepoSearch,
   inputValue,
   setInputValue,
   isFetchingData,
@@ -21,7 +21,7 @@ const BannerWithInput = ({
     const handleInputKeyDown = e => {
       if (e.keyCode === 13 && isSearchInputFocused) {
         clearTimeout(searchInputPostDebounceTimer);
-        onSearchPost(inputValue);
+        onRepoSearch(inputValue);
       }
     }
 
@@ -29,7 +29,7 @@ const BannerWithInput = ({
     return () => {
       window.removeEventListener('keydown', handleInputKeyDown);
     };
-  }, [inputValue, isSearchInputFocused, onSearchPost]);
+  }, [inputValue, isSearchInputFocused, onRepoSearch]);
 
   const handleSearchInputValueChange = (e) => {
     const newSearchInputValue = e.target.value;
@@ -38,7 +38,7 @@ const BannerWithInput = ({
     if (!isSearchInputDisabled && newSearchInputValue) {
       clearTimeout(searchInputPostDebounceTimer);
       searchInputPostDebounceTimer = setTimeout(() => {
-        onSearchPost(newSearchInputValue);
+        onRepoSearch(newSearchInputValue);
       }, SEARCH_INPUT_POST_DEBOUNCE_TIME);
     }
   }
